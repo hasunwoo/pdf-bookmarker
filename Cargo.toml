@@ -1,0 +1,19 @@
+[package]
+name = "pdf-bookmarker"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+strip = true
+lto = true
+opt-level = 3
+codegen-units = 1
+
+[dependencies]
+anyhow = "1.0.88"
+chumsky = "0.9.3"
+clap = { version = "4.5.17", features = ["derive"] }
+# see https://github.com/messense/mupdf-rs/issues/72
+# when fetched from crates.io, it won't downloads necessary resources for mupdf compilation.
+# run "git submodule update --init --recursive" to initialize mupdf-rs submodule.
+mupdf = { path = "./mupdf-rs", default-features = false }
